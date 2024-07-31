@@ -1,0 +1,27 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: app-metrics
+  security:
+    user:
+      name: admin
+      password: admin
+  boot:
+    admin:
+      client:
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+      routes:
+        endpoints: env, metrics, trace, jolokia, info, configprops
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
